@@ -43,6 +43,7 @@ RUN python -m pip install -U tensorflow==2.2.0
 
 # copy kwarqs specific code into the image
 COPY --chown=tensorflow ./kwarqs /home/tensorflow/kwarqs
+WORKDIR /home/tensorflow
 
 
 ENV TF_CPP_MIN_LOG_LEVEL 3
