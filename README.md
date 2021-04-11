@@ -57,7 +57,7 @@ To launch another shell, stop and start the container, and perform other actions
 
 ## Generating the model
 
-Generate the TFRecords:
+From the **kwarqs** directory inside the container generate the TFRecords:
 
 ```
 python generate_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=training/content/train.record
