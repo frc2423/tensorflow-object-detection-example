@@ -28,7 +28,7 @@ And then run ```docker exec -it [container name] /bin/bash```:
 
 ![image info](./doc/kwarqs/docker_exec.png)
 
-# Developing in VS Code
+## Developing in VS Code
 
 To develop in vscode first install the docker extension:
 
@@ -54,3 +54,12 @@ This should launch a shell in vscode into the container:
 To launch another shell, stop and start the container, and perform other actions right click the container in vscode:
 
 ![image info](./doc/kwarqs/vs_code_container.png)
+
+## Generating the model
+
+Generate the TFRecords:
+
+```
+python generate_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=training/content/train.record
+python generate_tfrecord.py --csv_input=images/test_labels.csv --image_dir=images/test --output_path=training/content/test.record
+```
