@@ -63,3 +63,9 @@ From the **kwarqs** directory inside the container generate the TFRecords:
 python generate_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=training/content/train.record
 python generate_tfrecord.py --csv_input=images/test_labels.csv --image_dir=images/test --output_path=training/content/test.record
 ```
+
+To train the model, execute the following command in the command line:
+
+```
+python ../models/research/object_detection/model_main_tf2.py --pipeline_config_path=training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config --model_dir=training --alsologtostderr
+```
