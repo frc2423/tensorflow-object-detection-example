@@ -41,9 +41,8 @@ RUN python -m pip install .
 # https://github.com/tensorflow/text/issues/385
 RUN python -m pip install -U tensorflow==2.2.0
 
-# clone KwarQs specific code
-RUN cd /home/tensorflow
-RUN git clone https://github.com/frc2423/tensorflow-object-detection-example.git
+# copy kwarqs specific code into the image
+COPY --chown=tensorflow ./kwarqs /home/tensorflow/kwarqs
 
 
 ENV TF_CPP_MIN_LOG_LEVEL 3
