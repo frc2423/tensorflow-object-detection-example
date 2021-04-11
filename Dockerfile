@@ -26,7 +26,7 @@ USER tensorflow
 WORKDIR /home/tensorflow
 
 # Copy this version of of the model garden into the image
-COPY --chown=tensorflow . /home/tensorflow/models
+COPY --chown=tensorflow ./models /home/tensorflow/models
 
 # Compile protobuf configs
 RUN (cd /home/tensorflow/models/research/ && protoc object_detection/protos/*.proto --python_out=.)
