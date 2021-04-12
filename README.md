@@ -81,3 +81,9 @@ When you are done training, run this to generate the inference graph that can be
 ```
 python ../models/research/object_detection/exporter_main_v2.py --trained_checkpoint_dir training --output_directory inference_graph --pipeline_config_path training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config
 ```
+
+To detect objects with your webcam using the model you trained run this script:
+
+```
+python detect_from_webcam.py --labelmap training/content/labelmap.pbtxt --model inference_graph/saved_model/saved_model.pb
+```
