@@ -17,7 +17,7 @@ docker build -f ./Dockerfile -t kwarqs-object-detection .
 ## Running
 
 ```
-docker run -it kwarqs-object-detection
+docker run --device=/dev/video0:/dev/video0 -it kwarqs-object-detection
 ```
 
 To access the running container first get its name by running ```docker ps``` in the terminal:
