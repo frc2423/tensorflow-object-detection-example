@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:2.2.0-gpu
+FROM tensorflow/tensorflow:2.4.0-gpu
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -11,7 +11,11 @@ RUN apt-get update && apt-get install -y \
     python3-pil \
     python3-lxml \
     python3-tk \
-    wget
+    wget \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
+    python3-opencv
 
 # Install gcloud and gsutil commands
 # https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu
@@ -39,7 +43,11 @@ RUN python -m pip install -U pip
 RUN python -m pip install .
 
 # https://github.com/tensorflow/text/issues/385
-RUN python -m pip install -U tensorflow==2.2.0
+# RUN python -m pip install -U tensorflow==2.2.0
+
+# incompatibility issues with tensorflow 2.2.0
+# RUN python -m pip install -U tf-models-official==2.2.0
+# RUN python -m pip install -U tensorflow-addons==0.11.2
 
 # copy kwarqs specific code into the image
 COPY --chown=tensorflow ./kwarqs /home/tensorflow/kwarqs
