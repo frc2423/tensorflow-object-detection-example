@@ -24,7 +24,7 @@ To access the running container first get its name by running ```docker ps``` in
 
 ![image info](./doc/kwarqs/docker_ps.png)
 
-And then run ```docker exec -it [container name] /bin/bash```:
+And then run ```docker exec -it -p 6006:6006 [container name] /bin/bash```:
 
 ![image info](./doc/kwarqs/docker_exec.png)
 
