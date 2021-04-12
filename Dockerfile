@@ -53,5 +53,7 @@ RUN python -m pip install .
 COPY --chown=tensorflow ./kwarqs /home/tensorflow/kwarqs
 WORKDIR /home/tensorflow
 
+# expose ports for viewing graphs of model
+EXPOSE 6006
 
 ENV TF_CPP_MIN_LOG_LEVEL 3
