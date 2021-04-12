@@ -69,3 +69,9 @@ To train the model, execute the following command in the command line:
 ```
 python ../models/research/object_detection/model_main_tf2.py --pipeline_config_path=training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config --model_dir=training --alsologtostderr
 ```
+
+Run tensorboard to visualize training of the model:
+
+```
+tensorboard --logdir=training/train --host 0.0.0.0 --port 6006
+```
