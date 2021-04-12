@@ -75,3 +75,9 @@ Run tensorboard to visualize training of the model:
 ```
 tensorboard --logdir=training/train --host 0.0.0.0 --port 6006
 ```
+
+When you are done training, run this to generate the inference graph that can be used to run the model:
+
+```
+python ../models/research/object_detection/exporter_main_v2.py --trained_checkpoint_dir training --output_directory inference_graph --pipeline_config_path training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config
+```
