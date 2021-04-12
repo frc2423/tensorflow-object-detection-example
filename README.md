@@ -24,7 +24,7 @@ To access the running container first get its name by running ```docker ps``` in
 
 ![image info](./doc/kwarqs/docker_ps.png)
 
-And then run ```docker exec -it [container name] /bin/bash```:
+And then run ```docker exec -it -p 6006:6006 [container name] /bin/bash```:
 
 ![image info](./doc/kwarqs/docker_exec.png)
 
@@ -68,4 +68,16 @@ To train the model, execute the following command in the command line:
 
 ```
 python ../models/research/object_detection/model_main_tf2.py --pipeline_config_path=training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config --model_dir=training --alsologtostderr
+```
+
+Run tensorboard to visualize training of the model:
+
+```
+tensorboard --logdir=training/train --host 0.0.0.0 --port 6006
+```
+
+When you are done training, run this to generate the inference graph that can be used to run the model:
+
+```
+python ../models/research/object_detection/exporter_main_v2.py --trained_checkpoint_dir training --output_directory inference_graph --pipeline_config_path training/ssd_efficientdet_d0_512x512_coco17_tpu-8.config
 ```
