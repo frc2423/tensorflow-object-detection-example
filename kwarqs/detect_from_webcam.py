@@ -56,23 +56,27 @@ def run_inference_for_single_image(model, image):
 def run_inference(model, category_index, cap):
     while True:
         ret, image_np = cap.read()
-        # Actual detection.
-        output_dict = run_inference_for_single_image(model, image_np)
-        # Visualization of the results of a detection.
-        vis_util.visualize_boxes_and_labels_on_image_array(
-            image_np,
-            output_dict['detection_boxes'],
-            output_dict['detection_classes'],
-            output_dict['detection_scores'],
-            category_index,
-            instance_masks=output_dict.get('detection_masks_reframed', None),
-            use_normalized_coordinates=True,
-            line_thickness=8)
-        cv2.imshow('object_detection', cv2.resize(image_np, (800, 600)))
-        if cv2.waitKey(25) & 0xFF == ord('q'):
-            cap.release()
-            cv2.destroyAllWindows()
-            break
+
+        print("image_np:", image_np, cap.isOpened())
+
+        if image_np is not None:
+            # Actual detection.
+            output_dict = run_inference_for_single_image(model, image_np)
+            # Visualization of the results of a detection.
+            vis_util.visualize_boxes_and_labels_on_image_array(
+                image_np,
+                output_dict['detection_boxes'],
+                output_dict['detection_classes'],
+                output_dict['detection_scores'],
+                category_index,
+                instance_masks=output_dict.get('detection_masks_reframed', None),
+                use_normalized_coordinates=True,
+                line_thickness=8)
+            cv2.imshow('object_detection', cv2.resize(image_np, (800, 600)))
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+                cap.release()
+                cv2.destroyAllWindows()
+                break
 
 
 if __name__ == '__main__':
@@ -85,4 +89,5 @@ if __name__ == '__main__':
     category_index = label_map_util.create_category_index_from_labelmap(args.labelmap, use_display_name=True)
 
     cap = cv2.VideoCapture(0)
+
     run_inference(detection_model, category_index, cap)
