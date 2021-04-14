@@ -17,7 +17,7 @@ docker build -f ./Dockerfile -t kwarqs-object-detection .
 ## Running
 
 ```
-docker run -it kwarqs-object-detection
+docker run --privileged --device=/dev/video0:/dev/video0 -it kwarqs-object-detection
 ```
 
 To access the running container first get its name by running ```docker ps``` in the terminal:
@@ -85,5 +85,5 @@ python ../models/research/object_detection/exporter_main_v2.py --trained_checkpo
 To detect objects with your webcam using the model you trained run this script:
 
 ```
-python detect_from_webcam.py --labelmap training/content/labelmap.pbtxt --model inference_graph/saved_model/saved_model.pb
+python detect_from_webcam.py --labelmap training/content/labelmap.pbtxt --model inference_graph/saved_model
 ```
